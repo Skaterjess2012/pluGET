@@ -133,3 +133,7 @@ dmypy.json
 
 # PyCharm Settings
 .idea
+
+# Docker bits
+.nvimlog
+src/config.ini
