@@ -7,4 +7,4 @@ COPY . .
 RUN pip install -r requirements.txt
 RUN chmod +x ./launcher.sh
 
-CMD tail -f /dev/null
+CMD sh ./launcher.sh

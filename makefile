@@ -5,7 +5,10 @@ build:
 	docker build -t pluget:latest .
 
 config:
-	docker run --rm --name pluget -d pluget
+	docker run \
+		--rm -d --name pluget \
+		--mount type=bind,source=`pwd`/,target=/data/pluGET  \
+		pluget tail -f /dev/null
 	docker exec -it pluget nvim ./src/config.ini
 	docker stop -t 0 pluget
 
