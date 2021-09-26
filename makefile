@@ -1,16 +1,18 @@
 # * everything needed to build/config/run the container
-all: build config run
+all: build config launch
 
 build:
 	docker build -t pluget:latest .
 
 config:
-	docker run \
-		--rm -d --name pluget \
-		--mount type=bind,source=`pwd`/,target=/data/pluGET  \
-		pluget tail -f /dev/null
-	docker exec -it pluget nvim ./src/config.ini
-	docker stop -t 0 pluget
+	docker run -it --rm --name pluget \
+		-v `pwd`:/data/pluGET \
+		pluget nvim ./src/config.ini
+
+launch:
+	docker run -it --rm --name pluget \
+		-v `pwd`:/data/pluGET \
+		pluget sh ./launcher.sh
 
 # * utilities I thought would be a nice to have
 fresh:
